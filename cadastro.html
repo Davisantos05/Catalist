@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro - Catalist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f7f4fc, #f0faff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .cadastro-card {
+            background: #fff;
+            width: 100%;
+            max-width: 380px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .cadastro-card h1 {
+            color: #7a5cff;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .cadastro-card p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-cadastro {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-cadastro input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #dcdcdc;
+            font-size: 15px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .form-cadastro input:focus {
+            border-color: #7a5cff;
+            box-shadow: 0 0 5px rgba(122, 92, 255, 0.3);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 13px;
+            text-align: left;
+            margin-top: -8px;
+            display: none;
+        }
+
+        button {
+            background: #7a5cff;
+            color: #fff;
+            font-size: 17px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #6b50e6;
+        }
+
+        .link-voltar {
+            display: block;
+            margin-top: 18px;
+            font-size: 14px;
+            color: #7a5cff;
+            text-decoration: none;
+        }
+
+        .link-voltar:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .cadastro-card {
+                margin: 0 15px;
+                padding: 25px;
+            }
+            .cadastro-card h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cadastro-card">
+        <h1>Catalist</h1>
+        <p>Crie sua conta gratuita</p>
+        
+        <form id="formCadastro" class="form-cadastro">
+            <input type="text" id="nome" placeholder="Nome completo" required>
+            
+            <input type="email" id="email" placeholder="E-mail" required>
+            
+            <div class="input-wrapper">
+                <input type="password" id="senha" placeholder="Senha (mín. 8 caracteres)" required>
+                <span class="toggle-password" onclick="toggleSenha('senha', this)">👁</span>
+            </div>
+            <span class="error-message" id="erroSenha">A senha deve ter no mínimo 8 caracteres.</span>
+            
+            <div class="input-wrapper">
+                <input type="password" id="confirmar" placeholder="Confirme sua senha" required>
+                <span class="toggle-password" onclick="toggleSenha('confirmar', this)">👁</span>
+            </div>
+            <span class="error-message" id="erroConfirmar">As senhas não coincidem.</span>
+            
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <a href="index.html" class="link-voltar">Voltar para a página inicial</a>
+    </div>
+
+    <script>
+        const form = document.getElementById('formCadastro');
+        const senha = document.getElementById('senha');
+        const confirmar = document.getElementById('confirmar');
+        const erroSenha = document.getElementById('erroSenha');
+        const erroConfirmar = document.getElementById('erroConfirmar');
+
+        function toggleSenha(id, element) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+                element.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                element.textContent = '👁';
+            }
+        }
+
+        form.addEventListener('submit', function(e) {
+            let valido = true;
+
+            if (senha.value.length < 8) {
+                erroSenha.style.display = 'block';
+                valido = false;
+            } else {
+                erroSenha.style.display = 'none';
+            }
+
+            if (senha.value !== confirmar.value) {
+                erroConfirmar.style.display = 'block';
+                valido = false;
+            } else {
+                erroConfirmar.style.display = 'none';
+            }
+
+            if (!valido) {
+                e.preventDefault();
+            } else {
+                alert('Cadastro realizado com sucesso!');
+            }
+        });
+    </script>
+
+</body>
+</html>
