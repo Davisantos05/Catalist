@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Catalist - Loja Digital</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    .texto-explicativo {
+      display: none;
+      position: absolute;
+      top: 55px;
+      background-color: #5c67f2;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      white-space: nowrap;
+      z-index: 999;
+    }
+    nav {
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <h1 class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Ebookfy</a></h1>
+      <nav>
+        <a href="index.html" class="nav-link active">Início</a>
+
+        <div class="menu-hover" style="display: inline-block; position: relative;">
+          <a href="#" class="nav-link">Produtos ▾</a>
+          <div class="dropdown-menu">
+            <h4>Ebooks Personalizados</h4>
+            <a href="avaliação.html">Avalie-nos</a>
+            <div class="subcategoria"><strong>Melhores investimentos!!</strong></div>
+            <a href="investimentos.html">Investindo do zero!</a>
+            <a href="investimentos.html">Independência Financeira</a>
+            <div class="subcategoria"><strong>A Melhor Escola em Pdf</strong></div>
+            <a href="estudos.html">Organização para estudantes</a>
+            <a href="estudos.html">Como passar no vestibular</a>
+            <div class="subcategoria"><strong>Fitness</strong></div>
+            <a href="fitness.html">Alimentação fitness</a>
+            <a href="fitness.html">Guia de treino em Casa</a>
+          </div>
+        </div>
+
+        <a href="cadastro.html" class="nav-link">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <h2>Venda seus produtos digitais com facilidade</h2>
+        <p>Plataforma simples, segura e completa para você começar a vender online hoje mesmo.</p>
+        <a href="cadastro.html" class="btn-primary">Comece Agora</a>
+      </div>
+    </section>
+
+    <section class="produtos container">
+      <h3>Produtos em Destaque</h3>
+
+      <div class="produtos-lista">
+        <div class="produto-card">
+          <img src="ebook.png" alt="E-book Poder da Mente" />
+          <h4>E-book Poder da Mente</h4>
+          <p class="preco">R$29,90</p>
+          <p class="descricao-curta">
+            Este e-book foi criado para quem quer mudar sua vida financeira.
+            <span class="texto-oculto" id="maisEbook">Aprenda como gerar renda extra e administrar seu dinheiro de forma simples e prática.</span>
+          </p>
+          <button class="btn-secundary" onclick="toggleTexto('maisEbook', this)">Saiba mais</button>
+          <a href="comprar-investindo.html" class="btn-secundary">Comprar</a>
+        </div>
+
+        <div class="produto-card">
+          <img src="fitness2.png" alt="Curso Online de Marketing" />
+          <h4>E-book sobre marketing digital</h4>
+          <p class="preco">R$ 19,90</p>
+          <p class="descricao-curta">
+            Domine estratégias modernas de marketing digital.
+            <span class="texto-oculto" id="maisCurso">Inclui SEO, tráfego pago, email marketing e muito mais.</span>
+          </p>
+          <button class="btn-secundary" onclick="toggleTexto('maisCurso', this)">Saiba mais</button>
+          <a href="comprar-fitness.html" class="btn-secundary">Comprar</a>
+        </div>
+
+        <div class="produto-card">
+          <img src="template-web.png" alt="Ebook Estudos" />
+          <h4>Ebook Estudos Profissional</h4>
+          <p class="preco">R$11,90</p>
+          <p class="descricao-curta">
+            Construa sites bonitos e responsivos em minutos.
+            <span class="texto-oculto" id="maisTemplate">Layout moderno, componentes prontos e código limpo.</span>
+          </p>
+          <button class="btn-secundary" onclick="toggleTexto('maisTemplate', this)">Saiba mais</button>
+          <a href="comprar-estudos.html" class="btn-secundary">Comprar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      <h4>Categorias</h4>
+      <nav class="rodape-links">
+        <a href="fitness.html">Ebook Fitness</a> |
+        <a href="investimentos.html">Ebook Investimentos</a> |
+        <a href="estudos.html">Ebook Estudos</a>
+      </nav>
+      <p>&copy; 2025 Catalist. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="botao.js"></script>
+  <button onclick="scrollToTop()" id="btnTopo" title="Voltar ao topo">&uarr;</button>
+  <a href="https://wa.me/+5511984612195" class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">💬</a>
+</body>
+</html>
