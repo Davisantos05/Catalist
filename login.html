@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login - Ebookfy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Fonte Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f7f4fc, #f0faff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .login-card {
+            background: #fff;
+            width: 100%;
+            max-width: 380px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .login-card h1 {
+            color: #7a5cff;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .login-card p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-login {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-login input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #dcdcdc;
+            font-size: 15px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .form-login input:focus {
+            border-color: #7a5cff;
+            box-shadow: 0 0 5px rgba(122, 92, 255, 0.3);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 13px;
+            text-align: left;
+            margin-top: -8px;
+            display: none;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        button {
+            background: #7a5cff;
+            color: #fff;
+            font-size: 17px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #6b50e6;
+        }
+
+        .link-voltar {
+            display: block;
+            margin-top: 18px;
+            font-size: 14px;
+            color: #7a5cff;
+            text-decoration: none;
+        }
+
+        .link-voltar:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .login-card {
+                margin: 0 15px;
+                padding: 25px;
+            }
+            .login-card h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h1>Ebookfy</h1>
+        <p>Entre com sua conta</p>
+        
+        <form id="formLogin" class="form-login">
+            <input type="email" id="email" name="email" placeholder="E-mail" required />
+
+            <div class="input-wrapper">
+                <input type="password" id="senha" name="senha" placeholder="Senha" required />
+                <span class="toggle-password" onclick="toggleSenha('senha', this)">👁</span>
+            </div>
+            <span class="error-message" id="erroSenha">E-mail ou senha inválidos.</span>
+
+            <button type="submit">Entrar</button>
+            <span class="success-message" id="mensagemSucesso">Login realizado! Redirecionando...</span>
+        </form>
+
+        <a href="cadastro.html" class="link-voltar">Não tem conta? Cadastre-se</a>
+    </div>
+
+    <script>
+        function toggleSenha(id, element) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+                element.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                element.textContent = '👁';
+            }
+        }
+
+        const formLogin = document.getElementById('formLogin');
+        const erroSenha = document.getElementById('erroSenha');
+        const mensagemSucesso = document.getElementById('mensagemSucesso');
+
+        formLogin.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = formLogin.email.value.trim();
+            const senha = formLogin.senha.value;
+
+            // Recuperar dados do usuário do localStorage
+            const usuario = JSON.parse(localStorage.getItem('usuario'));
+
+            if (usuario && usuario.email === email && usuario.senha === senha) {
+                erroSenha.style.display = 'none';
+                mensagemSucesso.style.display = 'block';
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } else {
+                mensagemSucesso.style.display = 'none';
+                erroSenha.style.display = 'block';
+            }
+        });
+    </script>
+
+</body>
+</html>
